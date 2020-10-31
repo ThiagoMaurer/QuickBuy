@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "QuickBuyDBCS": "server=localhost;port=3306;user=qbuser;password=qbsenha;database=QuickBuyDB"
+  }
+}
