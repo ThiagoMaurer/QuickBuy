@@ -1,1 +1,50 @@
-<div class=""></div>
+<div class="text-center">
+    <form class="form-signin">
+        <img id="idLogoQuickbuy" src="../../../assets/imagens/quick-logo.png" class="mb-3" title="Logo QuickBuy" />
+
+        <h4 class="mb-3">Login do Cliente</h4>
+
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="idInputEmail" class="form-control mb-2" placeholder="Informe o seu email"
+                name="email" [value]="email" #email="ngModel" [(ngModel)]="usuario.email"
+                required email />
+        <img class="img-validado" src="../../../assets/imagens/validado.png" *ngIf="email.valid" />
+
+        <div class="alert alert-danger" *ngIf="email.invalid && email.dirty">
+            <div *ngIf="email.errors.required">
+                O email é de preenchimento obrigatório.
+            </div>
+            <div *ngIf="email.errors.email">
+                Email não está no formato correto.
+            </div>
+        </div>
+
+        <label for="inputSenha" class="sr-only">Senha</label>
+        <input type="password" id="idInputSenha" class="form-control mb-2" placeholder="Informe sua senha"
+               name="senha" [value]="senha" #senha="ngModel" [(ngModel)]="usuario.senha"
+               required minlength="6" />
+        <img class="img-validado" src="../../../assets/imagens/validado.png" *ngIf="senha.valid" />
+
+        <div class="alert alert-danger" *ngIf="senha.invalid && senha.dirty">
+            <div *ngIf="senha.errors.required">
+                A senha deve ser preenchida.
+            </div>
+            <div *ngIf="senha.errors.minlength">
+                A senha deve ter no mínimo 6 caracteres.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button id="idBtnEntrar" class="btn btn-lg btn-primary" type="submit" (click)="entrar()">Entrar</button>
+            <button id="idBtnCadastrar" class="btn btn-lg btn-secondary" type="submit">Cadastrar-se</button>
+        </div>
+
+        <div class="alert alert-success" role="alert" *ngIf="usuarioAutenticado == 1">
+            Usuário autenticado!
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="usuarioAutenticado == 2">
+            Email ou senha não correspondem.
+        </div>
+    </form>
+</div>
