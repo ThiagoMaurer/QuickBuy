@@ -7,10 +7,13 @@
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="email" id="idInputEmail" class="form-control mb-2" placeholder="Informe o seu email"
                 name="email" [value]="email" #email="ngModel" [(ngModel)]="usuario.email"
-                required email />
-        <img class="img-validado" src="../../../assets/imagens/validado.png" *ngIf="email.valid" />
+                required email
+                [ngClass]="{
+                   'is-invalid': email.invalid && email.dirty,
+                   'is-valid': email.valid
+                }" />
 
-        <div class="alert alert-danger" *ngIf="email.invalid && email.dirty">
+        <div class="invalid-feedback mb-2" *ngIf="email.invalid && email.dirty">
             <div *ngIf="email.errors.required">
                 O email é de preenchimento obrigatório.
             </div>
@@ -22,10 +25,13 @@
         <label for="inputSenha" class="sr-only">Senha</label>
         <input type="password" id="idInputSenha" class="form-control mb-2" placeholder="Informe sua senha"
                name="senha" [value]="senha" #senha="ngModel" [(ngModel)]="usuario.senha"
-               required minlength="6" />
-        <img class="img-validado" src="../../../assets/imagens/validado.png" *ngIf="senha.valid" />
+               required minlength="6"
+                [ngClass]="{
+                   'is-invalid': senha.invalid && senha.dirty,
+                   'is-valid': senha.valid
+                }" />
 
-        <div class="alert alert-danger" *ngIf="senha.invalid && senha.dirty">
+        <div class="invalid-feedback mb-2" *ngIf="senha.invalid && senha.dirty">
             <div *ngIf="senha.errors.required">
                 A senha deve ser preenchida.
             </div>
