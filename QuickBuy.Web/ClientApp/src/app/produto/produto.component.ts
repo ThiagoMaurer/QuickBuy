@@ -2,7 +2,7 @@ import { Component } from "@angular/core"
 
 @Component({
     selector: "app-produto",
-    template: "<html><body>Testamndo: {{ obterNome() }}</body></html>"
+    template: "<html><body>Testando: {{ obterNome() }}</body></html>"
 })
 
 //Variaveis e funções = camelCase

@@ -13,7 +13,7 @@
                    'is-valid': email.valid
                 }" />
 
-        <div class="invalid-feedback mb-2" *ngIf="email.invalid && email.dirty">
+        <div class="invalid-feedback mb-3" *ngIf="email.invalid && email.dirty">
             <div *ngIf="email.errors.required">
                 O email é de preenchimento obrigatório.
             </div>
@@ -31,7 +31,7 @@
                    'is-valid': senha.valid
                 }" />
 
-        <div class="invalid-feedback mb-2" *ngIf="senha.invalid && senha.dirty">
+        <div class="invalid-feedback mb-3" *ngIf="senha.invalid && senha.dirty">
             <div *ngIf="senha.errors.required">
                 A senha deve ser preenchida.
             </div>
