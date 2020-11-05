@@ -30,8 +30,8 @@ import { ProdutoComponent } from './produto/produto.component';
     FormsModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
-        { path: 'counter', component: CounterComponent },
-        { path: 'fetch-data', component: FetchDataComponent },
+        { path: 'counter', component: CounterComponent, canActivate: [GuardaRotas] },
+        { path: 'fetch-data', component: FetchDataComponent, canActivate: [GuardaRotas] },
         { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
         { path: 'login', component: LoginComponent },
     ])
