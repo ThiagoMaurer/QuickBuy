@@ -34,6 +34,8 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
     <None Remove="ClientApp\src\app\model\usuario.ts" />
+    <None Remove="ClientApp\src\app\services\produto\produto.service.ts" />
+    <None Remove="ClientApp\src\app\services\usuario\usuario.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +55,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\usuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\produto\produto.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\usuario\usuario.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

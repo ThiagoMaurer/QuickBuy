@@ -14,6 +14,8 @@ import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { LoginComponent } from './usuario/login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 
+import { UsuarioService } from './services/usuario/usuario.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -35,8 +37,8 @@ import { ProdutoComponent } from './produto/produto.component';
         { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
         { path: 'login', component: LoginComponent },
     ])
-  ],
-  providers: [],
+    ],
+    providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
