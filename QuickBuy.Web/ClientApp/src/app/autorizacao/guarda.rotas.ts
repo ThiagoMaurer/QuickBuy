@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { UsuarioService } from "../services/usuario/usuario.service";
 
 
 @Injectable({
@@ -8,16 +9,13 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 export class GuardaRotas implements CanActivate {
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private usuarioService: UsuarioService) {
 
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-        var autenticado = sessionStorage.getItem("usuario-autenticado"); //1 == Usuario autenticado. 0 == Visitante, não autenticado.
-
-        //caso usuario esteja logado
-        if (autenticado == "1") {
+        if (this.usuarioService.usuario_autenticado()) {
             return true;
         }
 

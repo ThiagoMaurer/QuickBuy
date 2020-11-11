@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import { UsuarioService } from '../services/usuario/usuario.service';
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+    selector: 'app-nav-menu',
+    templateUrl: './nav-menu.component.html',
+    styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
     isExpanded = false;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private usuarioService: UsuarioService) {
 
     }
 
@@ -22,17 +23,11 @@ export class NavMenuComponent {
     }
 
     public usuarioLogado(): boolean {
-        /*var usuarioLogado = sessionStorage.getItem("usuario-autenticado");
-        if (usuarioLogado == "1") {
-            return true;
-        }
-        return false;*/
-
-        return sessionStorage.getItem("usuario-autenticado") == "1";
+        return this.usuarioService.usuario_autenticado();
     }
 
     public sair(): void {
-        sessionStorage.setItem("usuario-autenticado", "");
+        this.usuarioService.limpar_sessao();
         this.router.navigate["/login"];
     }
 }

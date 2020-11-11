@@ -24,16 +24,14 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
         this.usuario = new Usuario();
     }
 
-    entrar() {
-
+    entrar(): void {
         this.usuarioService.verificarUsuario(this.usuario)
             .subscribe(
-                data => {
-                    this.mensagem = null;
-                    var usuarioRetorno: Usuario;
-                    usuarioRetorno = data;
+                usuario_json => {
+                    this.mensagem = null; //tira a mensagem de erro qd acerta a senha
+                    this.usuarioService.usuario = usuario_json;
+
                     sessionStorage.setItem("usuario-autenticado", "1");
-                    sessionStorage.setItem("email-usuario", usuarioRetorno.email);
 
                     if (this.returnUrl == null)
                     {
@@ -49,16 +47,6 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
                     console.log(err.error);
                 }
             );
-
-        /*if (this.usuario.email == "thiago@gmail.com" && this.usuario.senha == "abc123") {
-            this.usuarioAutenticado = 1;
-
-            sessionStorage.setItem("usuario-autenticado", "1");
-            this.router.navigate([this.returnUrl]);
-        }
-        else {
-            this.usuarioAutenticado = 2;
-        }*/
     }
 
 }
