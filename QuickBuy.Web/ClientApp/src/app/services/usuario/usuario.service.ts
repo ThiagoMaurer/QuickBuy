@@ -45,6 +45,7 @@ export class UsuarioService { //ignorar tracejado
             senha: usuario.senha
         }
 
+
         //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
         return this.http.post<Usuario>(this.baseURL + "api/usuario/VerificarUsuario", body, { headers });
     }
