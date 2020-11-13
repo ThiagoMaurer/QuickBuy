@@ -45,7 +45,7 @@
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="position: relative;top: -3px;" *ngIf="ativar_spinner"></span>
                 Entrar
             </button>
-            <button id="idBtnCadastrar" class="btn btn-lg btn-secondary" type="submit">Cadastrar-se</button>
+            <button id="idBtnCadastrar" class="btn btn-lg btn-secondary" [routerLink]="['/cadastro-usuario']">Cadastrar-se</button>
         </div>
 
         <div class="alert alert-danger" role="alert" *ngIf="mensagem">

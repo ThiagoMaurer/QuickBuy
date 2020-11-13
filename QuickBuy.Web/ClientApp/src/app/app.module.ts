@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { LoginComponent } from './usuario/login/login.component';
+import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ProdutoComponent } from './produto/produto.component';
 
 import { UsuarioService } from './services/usuario/usuario.service';
@@ -20,7 +21,8 @@ import { UsuarioService } from './services/usuario/usuario.service';
         NavMenuComponent,
         HomeComponent,
         ProdutoComponent,
-        LoginComponent
+        LoginComponent,
+        CadastroUsuarioComponent
     ],
     imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +32,7 @@ import { UsuarioService } from './services/usuario/usuario.service';
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
         { path: 'login', component: LoginComponent },
+        { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
     ])
     ],
     providers: [UsuarioService],

@@ -1,0 +1,11 @@
+@import url(../login/login.component.css);
+
+    #idConfirmar, #idCancelar {
+        width: 40%;
+        margin: 0 10px;
+    }
+
+    #idConfirmar {
+        display: inline-block;
+    }
+

@@ -36,6 +36,7 @@ export class UsuarioService { //ignorar tracejado
         this.baseURL = baseUrl;
     }
 
+    //
     public verificarUsuario(usuario: Usuario): Observable<Usuario> { //retornar um Observable retornar uma mudança de estado
 
         const headers = new HttpHeaders().set('content-type', 'application/json');
@@ -46,8 +47,22 @@ export class UsuarioService { //ignorar tracejado
         }
 
 
-        //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
-        return this.http.post<Usuario>(this.baseURL + "api/usuario/VerificarUsuario", body, { headers });
+        return this.http.post<Usuario>(this.baseURL + "api/usuario/VerificarUsuario", body, { headers }); //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
+
+    }
+
+    //
+    public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
+        const headers = new HttpHeaders().set('content-type', 'application/json');
+
+        var body = {
+            email: usuario.email,
+            senha: usuario.senha,
+            nome: usuario.nome,
+            sobrenome: usuario.sobrenome
+        }
+
+        return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
     }
     
 }

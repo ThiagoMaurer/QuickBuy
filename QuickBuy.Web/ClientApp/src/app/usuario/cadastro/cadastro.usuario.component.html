@@ -1,0 +1,85 @@
+<div class="text-center">
+    <form class="form-signin">
+        <img id="idLogoQuickbuy" src="../../../assets/imagens/quick-logo.png" class="mb-3" title="Logo QuickBuy" />
+
+        <h4 class="mb-3">Cadastro do Cliente</h4>
+
+        <label for="inputNome" class="sr-only">Nome</label>
+        <input type="text" id="idInputNome" class="form-control mb-2" placeholder="Informe o seu nome"
+               name="nome" [value]="nome" #nome="ngModel" [(ngModel)]="usuario.nome"
+               required
+               [ngClass]="{
+                   'is-invalid': nome.invalid && (nome.dirty || (sobrenome.touched || sobrenome.dirty)),
+                   'is-valid': nome.valid
+                }" />
+
+        <div class="invalid-feedback mb-3" *ngIf="nome.invalid && (nome.dirty || (sobrenome.touched || sobrenome.dirty))">
+            <div *ngIf="nome.errors.required">
+                O nome é de preenchimento obrigatório.
+            </div>
+        </div>
+
+        <label for="inputSobrenome" class="sr-only">Sobrenome</label>
+        <input type="text" id="idInputSobrenome" class="form-control mb-2" placeholder="Informe o seu sobrenome"
+               name="sobrenome" [value]="sobrenome" #sobrenome="ngModel" [(ngModel)]="usuario.sobrenome"
+               required
+               [ngClass]="{
+                   'is-invalid': sobrenome.invalid && (sobrenome.dirty || (email.touched || email.dirty)),
+                   'is-valid': sobrenome.valid
+                }" />
+
+        <div class="invalid-feedback mb-3" *ngIf="sobrenome.invalid && (sobrenome.dirty || (email.touched || email.dirty))">
+            <div *ngIf="sobrenome.errors.required">
+                O sobrenome é de preenchimento obrigatório.
+            </div>
+        </div>
+
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="idInputEmail" class="form-control mb-2" placeholder="Informe o seu email"
+               name="email" [value]="email" #email="ngModel" [(ngModel)]="usuario.email"
+               required email
+               [ngClass]="{
+                   'is-invalid': email.invalid && (email.dirty || (senha.touched || senha.dirty)),
+                   'is-valid': email.valid
+                }" />
+
+        <div class="invalid-feedback mb-3" *ngIf="email.invalid && (email.dirty || (senha.touched || senha.dirty))">
+            <div *ngIf="email.errors.required">
+                O email é de preenchimento obrigatório.
+            </div>
+            <div *ngIf="email.errors.email">
+                Email não está no formato correto.
+            </div>
+        </div>
+
+        <label for="inputSenha" class="sr-only">Senha</label>
+        <input type="password" id="idInputSenha" class="form-control mb-2" placeholder="Informe sua senha"
+               name="senha" [value]="senha" #senha="ngModel" [(ngModel)]="usuario.senha"
+               required minlength="6"
+               [ngClass]="{
+                   'is-invalid': senha.invalid && senha.dirty,
+                   'is-valid': senha.valid
+                }" />
+
+        <div class="invalid-feedback mb-3" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+            <div *ngIf="senha.errors.required">
+                A senha deve ser preenchida.
+            </div>
+            <div *ngIf="senha.errors.minlength">
+                A senha deve ter no mínimo 6 caracteres.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button id="idConfirmar" class="btn btn-lg btn-primary" type="submit" (click)="cadastrar()" [disabled]="ativar_spinner">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="position: relative;top: -3px;" *ngIf="ativar_spinner"></span>
+                Confirmar
+            </button>
+            <button id="idCancelar" class="btn btn-lg btn-secondary" [routerLink]="['/login']">Cancelar</button>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="mensagem">
+            {{ mensagem }}
+        </div>
+    </form>
+</div>
