@@ -22,11 +22,6 @@
         font-size: 16px;
     }
 
-    #idBtnEntrar, #idBtnCadastrar {
-        width: 40%;
-        margin: 0 10px;
-    }
-
     #idBtnEntrar {
-        display: inline-block;
+        width: 100%;
     }

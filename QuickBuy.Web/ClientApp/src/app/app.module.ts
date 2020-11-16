@@ -4,16 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+//Components que vieram com a criação do projeto
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
-import { GuardaRotas } from './autorizacao/guarda.rotas';
+//Components
 import { LoginComponent } from './usuario/login/login.component';
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ProdutoComponent } from './produto/produto.component';
 
+//Services (injectables)
 import { UsuarioService } from './services/usuario/usuario.service';
+import { ProdutoService } from './services/produto/produto.service';
+
+//Etc
+import { GuardaRotas } from './autorizacao/guarda.rotas';
 
 @NgModule({
     declarations: [
@@ -30,12 +36,12 @@ import { UsuarioService } from './services/usuario/usuario.service';
     FormsModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
-        { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
+        { path: 'produto', component: ProdutoComponent, /*canActivate: [GuardaRotas]*/ },
         { path: 'login', component: LoginComponent },
         { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
     ])
     ],
-    providers: [UsuarioService],
+    providers: [UsuarioService, ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,47 @@
+import { Injectable, Inject, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Produto } from "../../model/produto";
+
+@Injectable({
+    providedIn: "root"
+})
+
+export class ProdutoService implements OnInit {
+
+    private _baseUrl: string;
+    public produtos: Produto[]; //um [] do lado pois é uma lista de produtos, e não um único produto
+
+    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        this._baseUrl = baseUrl;
+    }
+
+    ngOnInit(): void {
+        this.produtos = [];
+    }
+
+    //criando uma propriedade chamada headers pra não ter que escrever a mesma coisa em todo método
+    get headers(): HttpHeaders {
+        return new HttpHeaders().set("content-type", "application/json");
+    }
+
+    public cadastrar(produto: Produto): Observable<Produto> {
+        return this.http.post<Produto>(this._baseUrl + "api/produto/cadastrar", JSON.stringify(produto), { headers: this.headers }); //no usuario.service o body não tá sendo declarado com o JSON.stringify, é de uma maneira mais fácil, mas mais demorada. Mas também da pra fazer
+    }
+
+    public salvar(produto: Produto): Observable<Produto> {
+        return this.http.post<Produto>(this._baseUrl + "api/produto/salvar", JSON.stringify(produto), { headers: this.headers });
+    }
+
+    public deletar(produto: Produto): Observable<Produto> {
+        return this.http.post<Produto>(this._baseUrl + "api/produto/deletar", JSON.stringify(produto), { headers: this.headers });
+    }
+
+    public obterTodosProdutos(): Observable<Produto[]> {
+        return this.http.get<Produto[]>(this._baseUrl + "api/produto");
+    }
+
+    public obterProduto(produtoId: number): Observable<Produto> {
+        return this.http.get<Produto>(this._baseUrl + "api/produto");
+    }
+}

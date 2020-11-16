@@ -9,7 +9,7 @@ import { Usuario } from "../../model/usuario";
 
 export class UsuarioService { //ignorar tracejado 
 
-    private baseURL: string; //ali no constructor, esse baseURL recebe a injeção da Url atual. é uma responsividade ainda maior do que o Url Action do C#/Razor
+    private _baseUrl: string; //ali no constructor, esse baseURL recebe a injeção da Url atual. é uma responsividade ainda maior do que o Url Action do C#/Razor
     private _usuario: Usuario;
 
     set usuario(usuario: Usuario) {
@@ -33,7 +33,7 @@ export class UsuarioService { //ignorar tracejado
     }
 
     constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) { //nesse construtor, estamos fazendo injeções de dependência com o Angular
-        this.baseURL = baseUrl;
+        this._baseUrl = baseUrl;
     }
 
     //
@@ -46,9 +46,7 @@ export class UsuarioService { //ignorar tracejado
             senha: usuario.senha
         }
 
-
-        return this.http.post<Usuario>(this.baseURL + "api/usuario/VerificarUsuario", body, { headers }); //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
-
+        return this.http.post<Usuario>(this._baseUrl + "api/usuario/VerificarUsuario", body, { headers }); //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
     }
 
     //
@@ -62,7 +60,7 @@ export class UsuarioService { //ignorar tracejado
             sobrenome: usuario.sobrenome
         }
 
-        return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
+        return this.http.post<Usuario>(this._baseUrl + "api/usuario", body, { headers });
     }
     
 }

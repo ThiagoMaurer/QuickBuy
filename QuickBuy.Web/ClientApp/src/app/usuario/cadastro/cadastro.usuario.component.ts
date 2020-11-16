@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Usuario } from "../../model/usuario";
 import { UsuarioService } from "../../services/usuario/usuario.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: "app-cadastro-usuario",
@@ -21,13 +22,14 @@ export class CadastroUsuarioComponent implements OnInit {
     }
 
     public cadastrar(): void {
+        alert("Nome: " + this.usuario.nome + "\nSenha: " + this.usuario.senha + "\nEmail: " + this.usuario.email + "\nSobrenome: " + this.usuario.sobrenome);
         this.usuarioService.cadastrarUsuario(this.usuario)
             .subscribe(
-                successJSON => {
-                    
+                usuarioJSON => {
+                    alert("Chegou no alert de sucesso, ou seja, chegou no post do UsuarioController (C#)");
                 },
-                error => {
-
+                ex => {
+                    alert("Ocorreu um erro: " + ex.error);
                 }
             );
     }

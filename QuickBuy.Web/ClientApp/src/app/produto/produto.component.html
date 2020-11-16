@@ -1,0 +1,22 @@
+<h4>Cadastro de Produto</h4>
+
+<form class="">
+    <label for="inputNome" class="sr-only">Nome</label>
+    <input type="text" id="inputNome" class="form-control mb-2 col-md-4" placeholder="Informe o nome do produto"
+           name="nome" [value]="nome" #nome="ngModel" [(ngModel)]="produto.nome"
+           required
+           [ngClass]="{
+                    'is-invalid': nome.invalid && nome.dirty,
+                    'is-valid': nome.valid
+                  }" />
+
+    <div class="invalid-feedback mb-3" *ngIf="nome.invalid && nome.dirty">
+        <div *ngIf="nome.errors.required">
+            O nome do produto é de preenchimento obrigatório.
+        </div>
+    </div>
+
+    <button>Cadastrar produto</button>
+</form>
+
+

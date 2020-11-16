@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
         this.ativar_spinner = true;
         this.usuarioService.verificarUsuario(this.usuario)
             .subscribe(
-                usuario_json => {
+                usuarioJSON => {
                     this.mensagem = null;
-                    this.usuarioService.usuario = usuario_json;
+                    this.usuarioService.usuario = usuarioJSON;
 
                     sessionStorage.setItem("usuario-autenticado", "1");
 
@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
                         this.router.navigate([this.returnUrl]);
                     }
                 },
-                err => {
+                ex => {
                     this.ativar_spinner = false;
-                    this.mensagem = err.error;
-                    console.log(err.error);
+                    this.mensagem = ex.error;
+                    console.log(ex.error);
                 }
             );
     }
