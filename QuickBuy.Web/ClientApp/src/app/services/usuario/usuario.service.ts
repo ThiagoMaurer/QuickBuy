@@ -36,31 +36,41 @@ export class UsuarioService { //ignorar tracejado
         this._baseUrl = baseUrl;
     }
 
-    //
+    //criando uma propriedade chamada headers pra não ter que escrever a mesma coisa em todo método
+    get headers(): HttpHeaders {
+        return new HttpHeaders().set("content-type", "application/json");
+    }
+
     public verificarUsuario(usuario: Usuario): Observable<Usuario> { //retornar um Observable retornar uma mudança de estado
 
-        const headers = new HttpHeaders().set('content-type', 'application/json');
+        //const headers = new HttpHeaders().set('content-type', 'application/json'); --> SUBSTITUIDO PELO GET DA PROPRIEDADE HEADERS
 
-        var body = {
+        /*
+         SUBSTITUIDO PELO JSON.stringify(usuario), QUE FAZ PRATICAMENTE O MESMO PROCESSO, MAS DE UMA MANEIRA DIFERENTE
+         var body = {
             email: usuario.email,
             senha: usuario.senha
         }
+        */
 
-        return this.http.post<Usuario>(this._baseUrl + "api/usuario/VerificarUsuario", body, { headers }); //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
+        return this.http.post<Usuario>(this._baseUrl + "api/usuario/VerificarUsuario", JSON.stringify(usuario), { headers: this.headers }); //como dito anteriormente, o base.URL recebe a URL atual. num projeto local, vai receber localhost alguma coisa, num projeto publicado, vai receber http://www.quickbuy.com ou algo do tipo
     }
 
-    //
     public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
-        const headers = new HttpHeaders().set('content-type', 'application/json');
 
-        var body = {
+        //const headers = new HttpHeaders().set('content-type', 'application/json'); --> SUBSTITUIDO PELO GET DA PROPRIEDADE HEADERS
+
+        /*
+         SUBSTITUIDO PELO JSON.stringify(usuario), QUE FAZ PRATICAMENTE O MESMO PROCESSO, MAS DE UMA MANEIRA DIFERENTE
+         var body = {
             email: usuario.email,
             senha: usuario.senha,
             nome: usuario.nome,
             sobrenome: usuario.sobrenome
         }
+        */
 
-        return this.http.post<Usuario>(this._baseUrl + "api/usuario", body, { headers });
+        return this.http.post<Usuario>(this._baseUrl + "api/usuario", JSON.stringify(usuario), { headers: this.headers });
     }
     
 }

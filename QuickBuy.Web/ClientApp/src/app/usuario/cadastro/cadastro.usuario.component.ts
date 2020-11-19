@@ -12,6 +12,9 @@ import { HttpErrorResponse } from "@angular/common/http";
 export class CadastroUsuarioComponent implements OnInit {
 
     public usuario: Usuario;
+    public ativar_spinner: boolean;
+    public mensagem: string;
+    public usuarioCadastrado: boolean;
 
     constructor(private usuarioService: UsuarioService) {
         
@@ -22,13 +25,17 @@ export class CadastroUsuarioComponent implements OnInit {
     }
 
     public cadastrar(): void {
+        this.ativar_spinner = true;
         alert("Nome: " + this.usuario.nome + "\nSenha: " + this.usuario.senha + "\nEmail: " + this.usuario.email + "\nSobrenome: " + this.usuario.sobrenome);
         this.usuarioService.cadastrarUsuario(this.usuario)
             .subscribe(
                 usuarioJSON => {
+                    this.usuarioCadastrado = true;
+                    this.mensagem = "";
                     alert("Chegou no alert de sucesso, ou seja, chegou no post do UsuarioController (C#)");
                 },
                 ex => {
+                    this.mensagem = ex.error;
                     alert("Ocorreu um erro: " + ex.error);
                 }
             );

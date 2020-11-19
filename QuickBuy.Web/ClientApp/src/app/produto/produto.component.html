@@ -1,4 +1,4 @@
-<h4>Cadastro de Produto</h4>
+<h4 class="mb-3">Cadastro de Produto</h4>
 
 <form class="">
     <label for="inputNome" class="sr-only">Nome</label>
@@ -16,7 +16,47 @@
         </div>
     </div>
 
-    <button>Cadastrar produto</button>
+    <label for="inputDescricao" class="sr-only">Descricao</label>
+    <input type="text" id="inputDescricao" class="form-control mb-2 col-md-4" placeholder="Informe a descrição do produto"
+           name="descricao" [value]="descricao" #descricao="ngModel" [(ngModel)]="produto.descricao"
+           required
+           [ngClass]="{
+                    'is-invalid': descricao.invalid && descricao.dirty,
+                    'is-valid': descricao.valid
+                  }" />
+
+    <div class="invalid-feedback mb-3" *ngIf="descricao.invalid && descricao.dirty">
+        <div *ngIf="descricao.errors.required">
+            A descricão do produto é de preenchimento obrigatório.
+        </div>
+    </div>
+
+    <label for="inputPreco" class="sr-only">Descricao</label>
+    <input type="number" id="inputPreco" class="form-control mb-2 col-md-2 " placeholder="R$0,00"
+           name="preco" [value]="preco" #preco="ngModel" [(ngModel)]="produto.preco"
+           required min="1"
+           [ngClass]="{
+                    'is-invalid': preco.invalid && preco.dirty,
+                    'is-valid': preco.valid
+                  }" />
+
+    <div class="invalid-feedback mb-3" *ngIf="preco.invalid && preco.dirty">
+        <div *ngIf="preco.errors.required">
+            O preco do produto é de preenchimento obrigatório.
+        </div>
+        <div *ngIf="preco.errors.min">
+            O produto deve ter um preço.
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="custom-file col-md-4 mb-4">
+            <input type="file" name="file" class="custom-file-input" id="inputFile"/>
+            <label for="inputFile" class="custom-file-label">Escolha uma imagem para o produto</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="cadastrar()">Cadastrar produto</button>
 </form>
 
 

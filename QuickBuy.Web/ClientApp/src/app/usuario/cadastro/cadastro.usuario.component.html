@@ -81,5 +81,11 @@
         <div class="alert alert-danger" role="alert" *ngIf="mensagem">
             {{ mensagem }}
         </div>
+
+        <div class="alert alert-success" role="alert" *ngIf="usuarioCadastrado">
+            Usuário cadastrado com sucesso! <a class="alert-link" [routerLink]='["/login"]'>Clique aqui</a> para voltar à tela de Login.
+        </div>
+
+
     </form>
 </div>
