@@ -8,7 +8,6 @@ import { Produto } from "../../model/produto";
 })
 
 export class ProdutoService implements OnInit {
-
     private _baseUrl: string;
     public produtos: Produto[]; //um [] do lado pois é uma lista de produtos, e não um único produto
 
@@ -26,7 +25,7 @@ export class ProdutoService implements OnInit {
     }
 
     public cadastrar(produto: Produto): Observable<Produto> {
-        return this.http.post<Produto>(this._baseUrl + "api/produto/cadastrar", JSON.stringify(produto), { headers: this.headers }); //no usuario.service o body não tá sendo declarado com o JSON.stringify, é de uma maneira mais fácil, mas mais demorada. Mas também da pra fazer
+        return this.http.post<Produto>(this._baseUrl + "api/produto", JSON.stringify(produto), { headers: this.headers });
     }
 
     public salvar(produto: Produto): Observable<Produto> {
@@ -43,5 +42,11 @@ export class ProdutoService implements OnInit {
 
     public obterProduto(produtoId: number): Observable<Produto> {
         return this.http.get<Produto>(this._baseUrl + "api/produto");
+    }
+
+    public enviarArquivo(arquivoSelecionado: File): Observable<string> {
+        const formData: FormData = new FormData();
+        formData.append("arquivoEnviado", arquivoSelecionado, arquivoSelecionado.name);
+        return this.http.post<string>(this._baseUrl + "api/produto/EnviarArquivo", formData);
     }
 }

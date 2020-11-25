@@ -10,13 +10,12 @@ import { UsuarioService } from "../../services/usuario/usuario.service";
 })
 
 export class LoginComponent implements OnInit { //relacionado ao ciclo de vida do componente, vai ser falado sobre mais tarde
-    public usuario: Usuario;
+    public usuario;
     public mensagem: string;
     public returnUrl: string;
     public ativar_spinner: boolean;
 
     constructor(private router: Router, private activatedRouter: ActivatedRoute, private usuarioService: UsuarioService) {
-        this.usuario = new Usuario();
     }
 
     ngOnInit(): void {
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
                     this.mensagem = null;
                     this.usuarioService.usuario = usuarioJSON;
 
-                    sessionStorage.setItem("usuario-autenticado", "1");
+                    //sessionStorage.setItem("usuario-autenticado", "1");
 
                     if (this.returnUrl == null)
                     {

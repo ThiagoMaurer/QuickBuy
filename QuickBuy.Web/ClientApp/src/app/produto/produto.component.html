@@ -6,11 +6,11 @@
            name="nome" [value]="nome" #nome="ngModel" [(ngModel)]="produto.nome"
            required
            [ngClass]="{
-                    'is-invalid': nome.invalid && nome.dirty,
+                    'is-invalid': nome.invalid && (nome.dirty || nome.touched),
                     'is-valid': nome.valid
                   }" />
 
-    <div class="invalid-feedback mb-3" *ngIf="nome.invalid && nome.dirty">
+    <div class="invalid-feedback mb-3" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
             O nome do produto é de preenchimento obrigatório.
         </div>
@@ -21,11 +21,11 @@
            name="descricao" [value]="descricao" #descricao="ngModel" [(ngModel)]="produto.descricao"
            required
            [ngClass]="{
-                    'is-invalid': descricao.invalid && descricao.dirty,
+                    'is-invalid': descricao.invalid && (descricao.dirty || descricao.touched),
                     'is-valid': descricao.valid
                   }" />
 
-    <div class="invalid-feedback mb-3" *ngIf="descricao.invalid && descricao.dirty">
+    <div class="invalid-feedback mb-3" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
         <div *ngIf="descricao.errors.required">
             A descricão do produto é de preenchimento obrigatório.
         </div>
@@ -36,11 +36,11 @@
            name="preco" [value]="preco" #preco="ngModel" [(ngModel)]="produto.preco"
            required min="1"
            [ngClass]="{
-                    'is-invalid': preco.invalid && preco.dirty,
+                    'is-invalid': preco.invalid && (preco.dirty || preco.touched),
                     'is-valid': preco.valid
                   }" />
 
-    <div class="invalid-feedback mb-3" *ngIf="preco.invalid && preco.dirty">
+    <div class="invalid-feedback mb-3" *ngIf="preco.invalid && (preco.dirty || preco.touched)">
         <div *ngIf="preco.errors.required">
             O preco do produto é de preenchimento obrigatório.
         </div>
@@ -51,12 +51,19 @@
 
     <div class="input-group">
         <div class="custom-file col-md-4 mb-4">
-            <input type="file" name="file" class="custom-file-input" id="inputFile"/>
+            <input type="file" name="file" class="custom-file-input" id="inputFile" (change)="inputChange($event.target.files)"/>
             <label for="inputFile" class="custom-file-label">Escolha uma imagem para o produto</label>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success" (click)="cadastrar()">Cadastrar produto</button>
+    <button type="submit" class="btn btn-success mb-2" (click)="cadastrar()" [disabled]="ativar_spinner">
+        <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span>
+        Cadastrar produto
+    </button>
+
+    <div class="alert alert-danger col-md-4" *ngIf="mensagem">
+        Lista de erros: <br />{{mensagem}}
+    </div>
 </form>
 
 
