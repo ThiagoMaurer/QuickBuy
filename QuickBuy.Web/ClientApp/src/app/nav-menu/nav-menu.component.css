@@ -16,3 +16,13 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+/* SOBREPOSIÇÃO DO DROPDOWN */
+.dropdown-toggle::after {
+    vertical-align: 0.155em;
+}
+
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active  {
+    cursor: pointer;
+    outline: 0;
+}

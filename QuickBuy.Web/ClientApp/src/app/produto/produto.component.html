@@ -56,10 +56,15 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success mb-2" (click)="cadastrar()" [disabled]="ativar_spinner">
-        <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span>
-        Cadastrar produto
-    </button>
+    <div class="form-inline">
+        <button type="submit" class="btn btn-success" style="margin-right: 8px;" (click)="cadastrar()" [disabled]="ativar_spinner">
+            <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span>
+            Cadastrar produto
+        </button>
+
+        <button class="btn btn-secondary" [routerLink]="['/pesquisar-produto']">Cancelar</button>
+    </div>
+   
 
     <div class="alert alert-danger col-md-4" *ngIf="mensagem">
         Lista de erros: <br />{{mensagem}}
