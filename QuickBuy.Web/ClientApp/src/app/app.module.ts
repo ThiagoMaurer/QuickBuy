@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { TruncateModule } from 'ng2-truncate';
 
 //Components que vieram com a criação do projeto
 import { AppComponent } from './app.component';
@@ -21,6 +22,9 @@ import { ProdutoService } from './services/produto/produto.service';
 import { LoginComponent } from './usuario/login/login.component';
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { LojaPesquisaComponent } from './loja/pesquisa/loja.pesquisa.component';
+import { LojaProdutoComponent } from './loja/produto/loja.produto.component';
+import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
 
 @NgModule({
     declarations: [
@@ -30,18 +34,24 @@ import { ProdutoComponent } from './produto/produto.component';
         ProdutoComponent,
         LoginComponent,
         CadastroUsuarioComponent,
-        PesquisaProdutoComponent
+        PesquisaProdutoComponent,
+        LojaPesquisaComponent,
+        LojaProdutoComponent,
+        LojaEfetivarComponent
     ],
     imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    TruncateModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'produto', component: ProdutoComponent, /*canActivate: [GuardaRotas]*/ },
         { path: 'login', component: LoginComponent },
         { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
         { path: 'pesquisar-produto', component: PesquisaProdutoComponent },
+        { path: 'loja-produto', component: LojaProdutoComponent },
+        { path: 'loja-efetivar', component: LojaEfetivarComponent },
     ])
     ],
     providers: [UsuarioService, ProdutoService],

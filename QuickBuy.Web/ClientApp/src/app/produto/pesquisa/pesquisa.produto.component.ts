@@ -4,7 +4,7 @@ import { Produto } from "../../model/produto";
 import { ProdutoService } from "../../services/produto/produto.service";
 
 @Component({
-    selector: "pesquisa-produto",
+    selector: "app-produto-pesquisa",
     templateUrl: "./pesquisa.produto.component.html",
     styleUrls: ["./pesquisa.produto.component.css"]
 })
@@ -25,12 +25,13 @@ export class PesquisaProdutoComponent implements OnInit {
                     this.produtos = listaProdutos;
                 },
                 ex => {
-                    console.log(ex.Message);
+                    console.log(ex.error);
                 }
             )
     }
 
     public adicionarProduto() {
+        sessionStorage.removeItem("produtoSession");
         this.router.navigate(['/produto']);
     }
 

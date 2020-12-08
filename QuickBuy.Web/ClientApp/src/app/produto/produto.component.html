@@ -19,7 +19,7 @@
     <label for="inputDescricao" class="sr-only">Descricao</label>
     <input type="text" id="inputDescricao" class="form-control mb-2 col-md-4" placeholder="Informe a descrição do produto"
            name="descricao" [value]="descricao" #descricao="ngModel" [(ngModel)]="produto.descricao"
-           required
+           required minlength="50"
            [ngClass]="{
                     'is-invalid': descricao.invalid && (descricao.dirty || descricao.touched),
                     'is-valid': descricao.valid
@@ -28,6 +28,9 @@
     <div class="invalid-feedback mb-3" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
         <div *ngIf="descricao.errors.required">
             A descricão do produto é de preenchimento obrigatório.
+        </div>
+        <div *ngIf="descricao.errors.minlength">
+            A descrição deve ter no mínimo 50 caracteres.
         </div>
     </div>
 

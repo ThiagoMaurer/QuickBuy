@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { UsuarioService } from "../../services/usuario/usuario.service";
 
 @Component({
-    selector: "app-login",
+    selector: "app-usuario-login",
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.css"] //caso queira ter mais de um css, só colocar ["./style.css", "./main.css"]
 })

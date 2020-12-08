@@ -4,7 +4,7 @@ import { UsuarioService } from "../../services/usuario/usuario.service";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-    selector: "app-cadastro-usuario",
+    selector: "app-usuario-cadastro",
     templateUrl: "./cadastro.usuario.component.html",
     styleUrls: ["./cadastro.usuario.component.css"]
 })
