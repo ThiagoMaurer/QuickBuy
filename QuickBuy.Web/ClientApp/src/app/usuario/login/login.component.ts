@@ -31,8 +31,6 @@ export class LoginComponent implements OnInit { //relacionado ao ciclo de vida d
                     this.mensagem = null;
                     this.usuarioService.usuario = usuarioJSON;
 
-                    //sessionStorage.setItem("usuario-autenticado", "1");
-
                     if (this.returnUrl == null)
                     {
                         this.router.navigate(["/"]);
