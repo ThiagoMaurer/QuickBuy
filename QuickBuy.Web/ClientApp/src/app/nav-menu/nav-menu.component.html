@@ -39,6 +39,14 @@
                       <li class="dropdown-item" role="menu" [routerLink]='["/login"]' (click)="sair()">Sair</li>
                   </ul>
               </li>
+
+              <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="usuarioLogado() && temItensCarrinhoCompras()">
+                  <a class="nav-link text-dark" [routerLink]="['/loja-efetivar']">
+                    <img src="assets/imagens/shoping_car.png" style="width: 32px; height: 32px;"/>
+                  </a>
+              </li>
+
+
           </ul>
       </div>
     </div>

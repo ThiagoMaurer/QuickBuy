@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { ItemPedido } from "../../model/itemPedido";
+import { Pedido } from "../../model/pedido";
 import { Produto } from "../../model/produto";
-import { ProdutoService } from "../../services/produto/produto.service";
+import { PedidoService } from "../../services/pedido/pedido.service";
+import { UsuarioService } from "../../services/usuario/usuario.service";
 import { LojaCarrinhoCompras } from "../carrinho-compras/loja.carrinho.compras";
 
 @Component({
@@ -14,7 +18,7 @@ export class LojaEfetivarComponent implements OnInit {
     public lojaCarrinhoCompras: LojaCarrinhoCompras;
     public total: number;
 
-    constructor(private produtoService: ProdutoService) {
+    constructor(private pedidoService: PedidoService, private usuarioServico: UsuarioService, private router: Router) {
 
     }
 
@@ -47,6 +51,50 @@ export class LojaEfetivarComponent implements OnInit {
 
     public atualizarTotal() {
         this.total = this.produtos.reduce((acumulador, produto) => acumulador + produto.preco, 0);
+    }
+
+    public efetivarCompra() {
+        this.pedidoService.efetivarCompra(this.criarPedido())
+            .subscribe(
+                idPedido => {
+                    console.log(idPedido);
+                    sessionStorage.setItem("idPedido", idPedido.toString());
+                    this.produtos = [];
+                    this.lojaCarrinhoCompras.limparCarrinhoCompras();
+                    //rediricionamento demonstrando que a compra ocorreu com sucesso
+                    this.router.navigate(["compra-realizada-sucesso"]);
+                },
+                ex => {
+                    console.log(ex.error);
+                }
+            );
+    }
+
+    public criarPedido(): Pedido {
+        let pedido = new Pedido();
+        pedido.usuarioId = this.usuarioServico.usuario.id;
+        pedido.cep = "93900000";
+        pedido.cidade = "Ivoti";
+        pedido.estado = "Rio Grande do Sul";
+        pedido.dataPrevisaoEntrega = new Date();
+        pedido.formaPagamentoId = 1;
+        pedido.numeroEndereco = 1416;
+        pedido.enderecoCompleto = "Rua Henrique Dias, Jardim Panorâmico";
+
+        this.produtos = this.lojaCarrinhoCompras.obterProdutos();
+        for (let produto of this.produtos) {
+            let itemPedido = new ItemPedido();
+            itemPedido.produtoId = produto.id;
+            itemPedido.quantidade = produto.quantidade;
+
+            if (!produto.quantidade)
+                produto.quantidade = 1;
+
+            itemPedido.quantidade = produto.quantidade;
+            pedido.itensPedido.push(itemPedido);
+        }
+
+        return pedido;
     }
     
 }

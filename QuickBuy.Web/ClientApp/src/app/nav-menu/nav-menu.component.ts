@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { LojaCarrinhoCompras } from '../loja/carrinho-compras/loja.carrinho.compras';
 import { UsuarioService } from '../services/usuario/usuario.service';
 
 @Component({
@@ -7,11 +8,15 @@ import { UsuarioService } from '../services/usuario/usuario.service';
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit{
     isExpanded = false;
+    public lojaCarrinhoCompras: LojaCarrinhoCompras;
 
     constructor(private router: Router, private usuarioService: UsuarioService) {
 
+    }
+    ngOnInit(): void {
+        this.lojaCarrinhoCompras = new LojaCarrinhoCompras();
     }
 
     collapse() {
@@ -37,5 +42,9 @@ export class NavMenuComponent {
 
     get usuario() {
         return this.usuarioService.usuario;
+    }
+
+    public temItensCarrinhoCompras(): boolean {
+        return this.lojaCarrinhoCompras.temItensCarrinhoCompras();
     }
 }
